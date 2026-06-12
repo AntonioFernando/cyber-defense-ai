@@ -1,0 +1,27 @@
+# Ambiente virtual
+
+env/
+venv/
+
+# Python
+
+**pycache**/
+*.pyc
+
+# Dados temporários
+
+*.log
+
+# Sistema
+
+.DS_Store
+Thumbs.db
+
+# IDE
+
+.vscode/
+.idea/
+
+# PDFs finais
+
+docs/*.pdf
