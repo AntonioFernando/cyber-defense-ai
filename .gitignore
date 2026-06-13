@@ -1,3 +1,19 @@
+# =========================
+# Imagens e screenshots
+# =========================
+*.png
+*.jpg
+*.jpeg
+*.svg
+
+# =========================
+# Arquivos de logs e saídas geradas
+# =========================
+*.csv
+results/
+outputs/
+logs/
+
 # Ambiente virtual
 
 env/
@@ -5,7 +21,7 @@ venv/
 
 # Python
 
-**pycache**/
+__pycache__/
 *.pyc
 
 # Dados temporários

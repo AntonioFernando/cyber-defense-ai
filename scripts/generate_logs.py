@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 
-np.random.seed(42)
+# REMOVE o seed fixo
+# np.random.seed(42)
 
 n = 3000
 
@@ -14,10 +15,10 @@ for i in range(n):
 
     hora = base + timedelta(seconds=i * 60)
 
-    requests = np.random.randint(1, 80)
+    requests = np.random.randint(1, 120)
 
     status = np.random.choice(
-        [200, 200, 200, 401, 403, 500]
+        [200, 200, 200, 200, 401, 403, 429, 500]
     )
 
     logs.append([
@@ -27,20 +28,33 @@ for i in range(n):
             "/login",
             "/api/user",
             "/transfer",
-            "/payment"
+            "/payment",
+            "/pix",
+            "/saldo"
         ]),
         requests,
         status
     ])
 
-for _ in range(30):
+# quantidade aleatória de ataques
+ataques = np.random.randint(10, 120)
+
+for _ in range(ataques):
 
     logs.append([
         base,
-        f"10.0.0.{np.random.randint(1,20)}",
-        "/login",
-        np.random.randint(1000,5000),
-        401
+        f"10.0.0.{np.random.randint(1,50)}",
+        np.random.choice([
+            "/login",
+            "/transfer",
+            "/payment"
+        ]),
+        np.random.randint(500,7000),
+        np.random.choice([
+            401,
+            403,
+            429
+        ])
     ])
 
 df = pd.DataFrame(
@@ -59,4 +73,4 @@ df.to_csv(
     index=False
 )
 
-print("Logs gerados.")
+print(f"Logs gerados. Ataques simulados: {ataques}")

@@ -11,7 +11,7 @@ X = df[[
 ]]
 
 model = IsolationForest(
-    contamination=0.01,
+    contamination=0.05,
     random_state=42
 )
 
